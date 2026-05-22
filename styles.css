@@ -139,3 +139,22 @@ img{height:auto}
   color:var(--navy);
   border-color:rgba(255,255,255,.72);
 }
+
+/* Footer CTA readability hardening: white button, dark text, no white-on-white fallback. */
+.footer .footer-cta .btn.btn-light,
+.footer .footer-cta a.btn.btn-light,
+.footer .footer-cta .btn.btn-light:link,
+.footer .footer-cta .btn.btn-light:visited{
+  background:#ffffff !important;
+  color:var(--navy) !important;
+  border:2px solid rgba(24,38,52,.18) !important;
+  text-shadow:none !important;
+}
+.footer .footer-cta .btn.btn-light:hover,
+.footer .footer-cta .btn.btn-light:focus-visible,
+.footer .footer-cta a.btn.btn-light:hover,
+.footer .footer-cta a.btn.btn-light:focus-visible{
+  background:var(--gold) !important;
+  color:var(--navy) !important;
+  border-color:rgba(255,255,255,.72) !important;
+}
