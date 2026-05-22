@@ -122,3 +122,20 @@ img{height:auto}
   .brand img{width:48px;height:48px}.footer-logo{width:76px;height:76px}
   .photo-stack img,.photo-stack img:nth-child(2),.about-grid img{aspect-ratio:4/3;height:auto;min-height:0;max-height:none;object-fit:cover}
 }
+
+/* Footer CTA contrast fix: keep the visit button readable inside the dark footer. */
+.footer-cta .btn-light,
+.footer-cta a.btn-light{
+  background:var(--gold);
+  color:var(--navy);
+  border:1px solid rgba(255,255,255,.36);
+  box-shadow:rgba(0,0,0,.2) 0 12px 28px;
+}
+.footer-cta .btn-light:hover,
+.footer-cta .btn-light:focus-visible,
+.footer-cta a.btn-light:hover,
+.footer-cta a.btn-light:focus-visible{
+  background:#ffe0a1;
+  color:var(--navy);
+  border-color:rgba(255,255,255,.72);
+}
