@@ -61,3 +61,13 @@
 @media (max-width:540px){
   .footer a{display:inline-flex;align-items:center;min-height:44px;min-width:44px}
 }
+
+/* Accessibility refinement: make keyboard focus unmistakable on interactive controls. */
+.btn:focus-visible,
+.text-link:focus-visible,
+.contact-row:focus-visible,
+.ministry-social:focus-visible,
+.footer a:focus-visible{
+  outline:3px solid var(--gold);
+  outline-offset:4px;
+}
