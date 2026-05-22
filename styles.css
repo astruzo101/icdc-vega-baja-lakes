@@ -2,3 +2,62 @@
 @media (max-width:960px){.nav-toggle{display:inline-flex;align-items:center}.site-nav{position:absolute;left:1rem;right:1rem;top:78px;display:none;flex-direction:column;align-items:stretch;background:#fff;border-radius:22px;box-shadow:var(--shadow);padding:.75rem}.site-nav.open{display:flex}.nav-link{padding:.9rem 1rem}.hero,.image-hero{min-height:760px;place-items:end start}.intro-grid,.photo-feature,.visit-layout,.about-grid,.sermon-layout,.give-grid,.split-panels{grid-template-columns:1fr}.feature-cards,.footer-grid{grid-template-columns:1fr}.photo-stack img,.photo-stack img:nth-child(2){height:280px;margin:0}.section{padding:3.8rem 0}.warm{padding-top:3.8rem;padding-bottom:3.8rem}.event-list div{grid-template-columns:1fr}.footer-cta{align-items:flex-start;flex-direction:column}}@media (max-width:540px){.brand small{display:none}.brand img{width:48px;height:48px}h1{font-size:clamp(2.7rem,14vw,4.8rem)}.service-strip span{width:100%}.hero-actions .btn,.inline-actions .btn,.stack-actions .btn{width:100%}.photo-stack{grid-template-columns:1fr}.footer-bottom{display:block}}@media (prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 /* Production refinements: preserve hero image ratios and ministry logo grid */
 .hero,.image-hero{min-height:clamp(560px,82svh,820px);isolation:isolate}.hero-media{position:absolute;inset:0;display:block;width:100%;height:100%;overflow:hidden}.hero-media img,.image-hero>img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:center center}.hero-content{z-index:1;margin-inline:auto}.hero-scrim{z-index:0}.section-heading{max-width:760px;margin:0 auto 2rem;text-align:center}.section-heading p:last-child{color:var(--muted);margin-inline:auto}.ministries-showcase{padding-top:clamp(3.5rem,7vw,5.5rem)}.ministry-grid{display:grid;grid-template-columns:1fr;gap:1rem}.ministry-logo-card{text-align:center;display:flex;flex-direction:column;align-items:center;gap:.75rem;min-width:0}.ministry-logo-card img{width:clamp(132px,42vw,172px);height:clamp(132px,42vw,172px);aspect-ratio:1/1;object-fit:contain;object-position:center;background:#fff;border:1px solid var(--line);border-radius:24px;padding:.65rem;box-shadow:var(--shadow-soft);margin-inline:auto}.ministry-logo-card h3{font-size:clamp(1.35rem,5vw,1.75rem);letter-spacing:-.04em}.ministry-logo-card p{font-size:1rem;color:var(--muted);margin:.1rem 0 0}.ministry-social{min-height:44px;display:inline-flex;align-items:center;justify-content:center;padding:.65rem 1rem;border-radius:999px;background:var(--cream);color:var(--accent-dark);font-weight:900;text-decoration:none}.ministry-social:hover,.ministry-social:focus-visible{background:var(--accent);color:#fff;outline:0}.event-list div{min-width:0}.event-list strong,.event-list em{min-width:0}@media (min-width:640px){.ministry-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (min-width:1024px){.ministry-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}@media (max-width:960px){.hero,.image-hero{min-height:clamp(560px,88svh,760px)}.event-list div{grid-template-columns:1fr;align-items:start}.event-list span,.event-list strong,.event-list em{display:block}}@media (max-width:540px){body{overflow-x:hidden}.hero,.image-hero{min-height:clamp(560px,92svh,700px)}.hero-content{width:calc(100% - 2rem);padding:3.5rem 0 3rem}h1,h2,h3{overflow-wrap:break-word}.hero h1,.image-hero h1{font-size:clamp(2.2rem,9.6vw,3rem);line-height:1.06;letter-spacing:-.04em;max-width:min(100%,10ch)}h2{font-size:clamp(1.75rem,7.4vw,2.2rem);letter-spacing:-.035em;max-width:100%}.intro-grid h2{max-width:11.5ch}.hero-copy{font-size:1.02rem;max-width:32ch}.section-heading{text-align:left}.section-heading h2{max-width:11ch}.section-heading p{max-width:24ch}.ministry-logo-card{padding:1.25rem}.ministry-logo-card img{width:min(56vw,160px);height:min(56vw,160px)}.ministry-logo-card p{max-width:30ch}.ministry-social{width:100%}}
+
+/* Mobile parity pass: preserve desktop visual hierarchy and visible content on small screens. */
+@media (max-width:960px){
+  .site-header{flex-wrap:wrap;align-items:center;gap:.75rem;padding:.75rem clamp(.8rem,3vw,1.25rem)}
+  .nav-toggle{display:none!important}
+  .site-nav{position:static!important;order:3;width:100%;display:flex!important;flex-direction:row!important;align-items:center;gap:.25rem;overflow-x:auto;overscroll-behavior-inline:contain;background:transparent!important;border-radius:0!important;box-shadow:none!important;padding:0!important;scrollbar-width:thin}
+  .site-nav.open{display:flex!important}
+  .nav-link{flex:0 0 auto;min-height:44px;padding:.65rem .82rem;white-space:nowrap}
+  .hero,.image-hero{min-height:clamp(620px,92svh,820px);place-items:center start}
+  .hero-content{padding:clamp(3rem,8vw,5rem) 0;width:min(var(--max),calc(100% - 2rem))}
+  .intro-grid,.photo-feature,.visit-layout,.about-grid,.sermon-layout,.give-grid,.split-panels{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(1rem,4vw,2.5rem);align-items:center}
+  .feature-cards{grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(.6rem,2.5vw,1rem)}
+  .footer-grid{grid-template-columns:1.25fr repeat(3,minmax(0,1fr));gap:clamp(.8rem,3vw,1.4rem)}
+  .card,.panel,.give-card{padding:clamp(1rem,3vw,1.6rem);border-radius:clamp(18px,4vw,var(--radius))}
+  .section{padding:clamp(3rem,8vw,5rem) 0}
+  .warm{padding-top:clamp(3rem,8vw,5rem);padding-bottom:clamp(3rem,8vw,5rem)}
+  .photo-stack{grid-template-columns:1fr 1fr;gap:.7rem;align-items:end}
+  .photo-stack img{height:clamp(220px,42vw,360px);margin:0}
+  .photo-stack img:nth-child(2){height:clamp(180px,34vw,300px);margin-top:clamp(34px,8vw,70px)}
+  .event-list div{grid-template-columns:minmax(76px,.75fr) minmax(0,1fr) auto;gap:clamp(.55rem,2vw,1rem);align-items:center}
+  .event-list span,.event-list strong,.event-list em{display:block}
+  .footer-cta{align-items:center;flex-direction:row;justify-content:space-between}
+}
+@media (max-width:540px){
+  body{overflow-x:hidden}
+  .brand small{display:inline}.brand img{width:48px;height:48px}
+  h1{font-size:clamp(2.35rem,12vw,4.15rem)}
+  h2{font-size:clamp(1.55rem,7.2vw,2.6rem)}
+  h3{font-size:clamp(1rem,4.5vw,1.35rem)}
+  .hero h1,.image-hero h1{font-size:clamp(2.35rem,12vw,4.15rem);line-height:1.04;letter-spacing:-.05em;max-width:100%}
+  .hero-copy{font-size:clamp(1rem,4.2vw,1.18rem);max-width:100%}
+  .service-strip span{width:auto;flex:0 1 auto;padding:.68rem .78rem;font-size:.9rem}
+  .hero-actions .btn,.inline-actions .btn,.stack-actions .btn{width:auto;flex:0 1 auto;min-height:46px;padding:.78rem 1rem}
+  .inline-actions{gap:.55rem}
+  .intro-grid,.photo-feature,.visit-layout,.about-grid,.sermon-layout,.give-grid,.split-panels{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:.85rem}
+  .feature-cards{grid-template-columns:repeat(3,minmax(0,1fr));gap:.55rem}
+  .card,.panel,.give-card{padding:.85rem;border-radius:18px}
+  .step-card span{width:38px;height:38px;margin-bottom:.8rem}
+  .card p,.panel p,p{font-size:clamp(.86rem,3.7vw,1rem)}
+  .photo-stack{grid-template-columns:1fr 1fr}
+  .photo-stack img{height:clamp(180px,48vw,250px)}
+  .photo-stack img:nth-child(2){height:clamp(150px,40vw,220px);margin-top:38px}
+  .ministry-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}
+  .ministry-logo-card{padding:.85rem;gap:.55rem}
+  .ministry-logo-card img{width:clamp(112px,34vw,146px);height:clamp(112px,34vw,146px)}
+  .ministry-logo-card p{max-width:none;font-size:.9rem}
+  .ministry-social{width:auto;min-height:44px;padding:.62rem .75rem}
+  .event-list{gap:.6rem}
+  .event-list div{grid-template-columns:minmax(62px,.72fr) minmax(0,1fr) auto;padding:.75rem;gap:.5rem}
+  .event-list span{font-size:.84rem}.event-list strong{font-size:.92rem}.event-list em{font-size:.84rem;white-space:nowrap}
+  .footer-cta{flex-direction:row;align-items:center}.footer-cta strong{font-size:1rem}
+  .footer-grid{grid-template-columns:1.15fr repeat(3,minmax(0,1fr));gap:.7rem}.footer p,.footer a{font-size:.82rem}.footer-logo{width:64px;height:64px}.footer-bottom{display:flex}
+}
+@media (max-width:960px){
+  .site-nav{flex-wrap:wrap;overflow-x:visible;row-gap:.35rem}
+}
+@media (max-width:540px){
+  .footer a{display:inline-flex;align-items:center;min-height:44px;min-width:44px}
+}
