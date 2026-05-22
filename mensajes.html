@@ -71,7 +71,19 @@
 
 <section class="page-hero" aria-labelledby="messages-title"><p class="eyebrow">Mensajes</p><h1 id="messages-title">Escucha la Palabra y acompáñanos.</h1><p>Un espacio simple para encontrar la predicación y conocer la vida de adoración de la iglesia.</p></section>
 <section class="section sermon-layout">
-  <div class="video-frame"><iframe src="https://www.youtube.com/embed?listType=user_uploads&list=ICDCVegaBajaLakes" title="Mensajes de ICDC Vega Baja Lakes en YouTube" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+  <div class="video-frame latest-video" data-youtube-latest aria-live="polite">
+    <div class="video-status" data-youtube-status>
+      <span class="video-spinner" aria-hidden="true"></span>
+      <p>Cargando último mensaje…</p>
+    </div>
+    <iframe data-youtube-iframe title="Último mensaje de ICDC Vega Baja Lakes en YouTube" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen hidden></iframe>
+    <noscript>
+      <div class="video-fallback">
+        <p>Último mensaje no disponible. Visita nuestro canal.</p>
+        <a class="btn btn-primary" href="https://www.youtube.com/@ICDCVegaBajaLakes" rel="noopener noreferrer">Abrir YouTube</a>
+      </div>
+    </noscript>
+  </div>
   <aside class="card sermon-card"><h2>Últimos mensajes</h2><p>Si el reproductor no carga en tu dispositivo, abre directamente el canal de YouTube.</p><div class="stack-actions"><a class="btn btn-primary" href="https://www.youtube.com/@ICDCVegaBajaLakes" rel="noopener noreferrer">Abrir YouTube</a><a class="btn btn-ghost" href="soy-nuevo.html">Visítanos este domingo</a></div></aside>
 </section>
 

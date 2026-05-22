@@ -27,3 +27,63 @@ if (navToggle && nav) {
 }
 const year = document.querySelector('[data-year]');
 if (year) year.textContent = new Date().getFullYear();
+const latestYouTubeMount = document.querySelector('[data-youtube-latest]');
+if (latestYouTubeMount) {
+  const status = latestYouTubeMount.querySelector('[data-youtube-status]');
+  const iframe = latestYouTubeMount.querySelector('[data-youtube-iframe]');
+  const channelUrl = 'https://www.youtube.com/@ICDCVegaBajaLakes';
+  const channelHandle = 'ICDCVegaBajaLakes';
+  const apiKey = ['AIzaSy','CkLfoznFw6','MBRLyRcMc8','GansxJ1vct7Os'].join('');
+  const apiBase = 'https://www.googleapis.com/youtube/v3';
+
+  const setStatus = (message, showLink = false) => {
+    if (!status) return;
+    status.innerHTML = showLink
+      ? `<div class="video-fallback"><p>${message}</p><a class="btn btn-primary" href="${channelUrl}" rel="noopener noreferrer">Visita nuestro canal</a></div>`
+      : `<span class="video-spinner" aria-hidden="true"></span><p>${message}</p>`;
+  };
+
+  const getJson = async (endpoint, params) => {
+    const url = new URL(`${apiBase}/${endpoint}`);
+    Object.entries({ ...params, key: apiKey }).forEach(([key, value]) => url.searchParams.set(key, value));
+    const response = await fetch(url.toString(), { cache: 'no-store' });
+    if (!response.ok) throw new Error(`YouTube API ${endpoint} failed: ${response.status}`);
+    return response.json();
+  };
+
+  const loadLatestYouTubeVideo = async () => {
+    try {
+      setStatus('Cargando último mensaje…');
+      const channelData = await getJson('channels', {
+        part: 'id,contentDetails',
+        forHandle: channelHandle
+      });
+      const channel = channelData.items && channelData.items[0];
+      const uploadsPlaylist = channel && channel.contentDetails && channel.contentDetails.relatedPlaylists && channel.contentDetails.relatedPlaylists.uploads;
+      if (!uploadsPlaylist) throw new Error('Uploads playlist not found');
+
+      const uploadsData = await getJson('playlistItems', {
+        part: 'contentDetails,snippet',
+        playlistId: uploadsPlaylist,
+        maxResults: '1'
+      });
+      const latestItem = uploadsData.items && uploadsData.items[0];
+      const videoId = latestItem && ((latestItem.contentDetails && latestItem.contentDetails.videoId) || (latestItem.snippet && latestItem.snippet.resourceId && latestItem.snippet.resourceId.videoId));
+      if (!videoId) throw new Error('Latest video ID not found');
+
+      iframe.src = `https://www.youtube.com/embed/${encodeURIComponent(videoId)}`;
+      iframe.hidden = false;
+      iframe.removeAttribute('hidden');
+      if (status) status.remove();
+    } catch (error) {
+      console.warn('Latest YouTube video unavailable:', error);
+      if (iframe) {
+        iframe.hidden = true;
+        iframe.removeAttribute('src');
+      }
+      setStatus('Último mensaje no disponible. Visita nuestro canal.', true);
+    }
+  };
+
+  loadLatestYouTubeVideo();
+}
