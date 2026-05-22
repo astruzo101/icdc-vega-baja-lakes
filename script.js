@@ -51,6 +51,13 @@ if (latestYouTubeMount) {
     return response.json();
   };
 
+  const showVideo = (videoId) => {
+    iframe.src = `https://www.youtube.com/embed/${encodeURIComponent(videoId)}`;
+    iframe.hidden = false;
+    iframe.removeAttribute('hidden');
+    if (status) status.remove();
+  };
+
   const loadLatestYouTubeVideo = async () => {
     try {
       setStatus('Cargando último mensaje…');
@@ -71,12 +78,14 @@ if (latestYouTubeMount) {
       const videoId = latestItem && ((latestItem.contentDetails && latestItem.contentDetails.videoId) || (latestItem.snippet && latestItem.snippet.resourceId && latestItem.snippet.resourceId.videoId));
       if (!videoId) throw new Error('Latest video ID not found');
 
-      iframe.src = `https://www.youtube.com/embed/${encodeURIComponent(videoId)}`;
-      iframe.hidden = false;
-      iframe.removeAttribute('hidden');
-      if (status) status.remove();
+      showVideo(videoId);
     } catch (error) {
       console.warn('Latest YouTube video unavailable:', error);
+      const bakedVideoId = iframe && iframe.dataset && iframe.dataset.fallbackVideoId;
+      if (bakedVideoId) {
+        showVideo(bakedVideoId);
+        return;
+      }
       if (iframe) {
         iframe.hidden = true;
         iframe.removeAttribute('src');
