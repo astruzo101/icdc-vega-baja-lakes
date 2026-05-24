@@ -55,11 +55,13 @@ if (latestYouTubeMount) {
     iframe.src = `https://www.youtube.com/embed/${encodeURIComponent(videoId)}`;
     iframe.hidden = false;
     iframe.removeAttribute('hidden');
+    latestYouTubeMount.setAttribute('aria-busy', 'false');
     if (status) status.remove();
   };
 
   const loadLatestYouTubeVideo = async () => {
     try {
+      latestYouTubeMount.setAttribute('aria-busy', 'true');
       setStatus('Cargando último mensaje…');
       const channelData = await getJson('channels', {
         part: 'id,contentDetails',
@@ -90,6 +92,7 @@ if (latestYouTubeMount) {
         iframe.hidden = true;
         iframe.removeAttribute('src');
       }
+      latestYouTubeMount.setAttribute('aria-busy', 'false');
       setStatus('Último mensaje no disponible. Visita nuestro canal.', true);
     }
   };
