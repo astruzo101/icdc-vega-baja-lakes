@@ -8,6 +8,53 @@
   const channelLiveUrl = 'https://www.youtube.com/@ICDCVegaBajaLakes/live';
   const apiBase = 'https://www.googleapis.com/youtube/v3/search';
   const pollIntervalMs = 60000;
+  const astOffsetMinutes = -4 * 60;
+  const sunday = 0;
+  const firstPollHour = 9;
+  const firstPollMinute = 45;
+  const minuteMs = 60000;
+  const dayMs = 24 * 60 * minuteMs;
+
+  let pollTimer = null;
+  let startTimer = null;
+  let liveWasDetected = false;
+
+  const clearTimer = (timer) => {
+    if (timer) window.clearTimeout(timer);
+    return null;
+  };
+
+  const astNow = () => new Date(Date.now() + (astOffsetMinutes * minuteMs));
+
+  const astStartTodayMs = (astDate) => Date.UTC(
+    astDate.getUTCFullYear(),
+    astDate.getUTCMonth(),
+    astDate.getUTCDate(),
+    firstPollHour,
+    firstPollMinute,
+    0,
+    0
+  );
+
+  const isSundayInAst = (astDate) => astDate.getUTCDay() === sunday;
+
+  const isSundayAfterStartInAst = () => {
+    const now = astNow();
+    return isSundayInAst(now) && now.getTime() >= astStartTodayMs(now);
+  };
+
+  const msUntilNextSundayStart = () => {
+    const now = astNow();
+    const todayStart = astStartTodayMs(now);
+    let daysUntilSunday = (sunday - now.getUTCDay() + 7) % 7;
+
+    if (daysUntilSunday === 0 && now.getTime() >= todayStart) {
+      daysUntilSunday = 7;
+    }
+
+    const nextStart = todayStart + (daysUntilSunday * dayMs);
+    return Math.max(nextStart - now.getTime(), 0);
+  };
 
   const hideIndicator = () => {
     root.hidden = true;
@@ -20,6 +67,19 @@
     link.href = `https://www.youtube.com/watch?v=${encodeURIComponent(videoId)}`;
     root.hidden = false;
     root.classList.add('is-live');
+  };
+
+  const scheduleNextSunday = () => {
+    pollTimer = clearTimer(pollTimer);
+    startTimer = clearTimer(startTimer);
+    liveWasDetected = false;
+    hideIndicator();
+    startTimer = window.setTimeout(startSundayPolling, msUntilNextSundayStart());
+  };
+
+  const scheduleNextPoll = () => {
+    pollTimer = clearTimer(pollTimer);
+    pollTimer = window.setTimeout(checkLiveStream, pollIntervalMs);
   };
 
   const getLiveVideoId = async () => {
@@ -43,19 +103,46 @@
   };
 
   const checkLiveStream = async () => {
+    if (!isSundayAfterStartInAst()) {
+      scheduleNextSunday();
+      return;
+    }
+
     try {
       const videoId = await getLiveVideoId();
       if (videoId) {
+        liveWasDetected = true;
         showIndicator(videoId);
+        scheduleNextPoll();
+        return;
+      }
+
+      hideIndicator();
+      if (liveWasDetected) {
+        scheduleNextSunday();
       } else {
-        hideIndicator();
+        scheduleNextPoll();
       }
     } catch (_) {
       // Fail silently for visitors if the API quota, key, or network is unavailable.
+      if (isSundayAfterStartInAst()) scheduleNextPoll();
     }
   };
 
+  function startSundayPolling() {
+    startTimer = clearTimer(startTimer);
+    if (!isSundayAfterStartInAst()) {
+      scheduleNextSunday();
+      return;
+    }
+
+    checkLiveStream();
+  }
+
   hideIndicator();
-  checkLiveStream();
-  window.setInterval(checkLiveStream, pollIntervalMs);
+  if (isSundayAfterStartInAst()) {
+    startSundayPolling();
+  } else {
+    scheduleNextSunday();
+  }
 })();
