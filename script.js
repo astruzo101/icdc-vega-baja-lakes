@@ -35,6 +35,7 @@ if (latestYouTubeMount) {
   const channelHandle = 'ICDCVegaBajaLakes';
   const apiKey = ['AIzaSy','CkLfoznFw6','MBRLyRcMc8','GansxJ1vct7Os'].join('');
   const apiBase = 'https://www.googleapis.com/youtube/v3';
+  const embedBase = 'https://www.youtube-nocookie.com/embed';
 
   const setStatus = (message, showLink = false) => {
     if (!status) return;
@@ -52,7 +53,7 @@ if (latestYouTubeMount) {
   };
 
   const showVideo = (videoId) => {
-    iframe.src = `https://www.youtube.com/embed/${encodeURIComponent(videoId)}`;
+    iframe.src = `${embedBase}/${encodeURIComponent(videoId)}`;
     iframe.hidden = false;
     iframe.removeAttribute('hidden');
     latestYouTubeMount.setAttribute('aria-busy', 'false');
