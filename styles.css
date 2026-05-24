@@ -168,3 +168,15 @@ img{height:auto}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
   .video-spinner{animation:none;border-top-color:rgba(255,255,255,.72)}
 }
+
+
+/* Standalone En Vivo indicator; independent from the latest-message YouTube embed. */
+.live-stream-slot[hidden]{display:none!important}
+.live-stream-slot{position:relative;z-index:55;width:100%;padding:.65rem clamp(1rem,4vw,3rem);background:linear-gradient(90deg,var(--navy),var(--green));box-shadow:rgba(24,38,52,.16) 0 12px 28px}
+.live-stream-indicator{width:min(var(--max),100%);min-height:52px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:.85rem;padding:.65rem 1rem;border:1px solid rgba(255,255,255,.2);border-radius:999px;background:rgba(255,255,255,.1);color:#fff;text-decoration:none;font-weight:900;box-shadow:inset rgba(255,255,255,.13) 0 1px 0;transition:transform .18s ease,background .18s ease,box-shadow .18s ease}
+.live-stream-indicator:hover,.live-stream-indicator:focus-visible{background:rgba(255,255,255,.18);box-shadow:rgba(213,163,81,.24) 0 0 0 4px,inset rgba(255,255,255,.18) 0 1px 0;outline:0;transform:translateY(-1px)}
+.live-stream-dot{width:.78rem;height:.78rem;flex:0 0 auto;border-radius:999px;background:#ff2d2d;box-shadow:0 0 0 .32rem rgba(255,45,45,.18),0 0 18px rgba(255,45,45,.72);animation:live-dot-pulse 1.65s ease-in-out infinite}
+.live-stream-copy{display:flex;align-items:baseline;gap:.5rem;line-height:1.1;text-align:center}.live-stream-copy strong{font-size:clamp(1rem,2vw,1.12rem);letter-spacing:-.02em}.live-stream-copy small{font-size:.9rem;color:#ffe9bb;font-weight:900}
+@keyframes live-dot-pulse{0%,100%{transform:scale(1);box-shadow:0 0 0 .32rem rgba(255,45,45,.18),0 0 18px rgba(255,45,45,.72)}50%{transform:scale(1.16);box-shadow:0 0 0 .55rem rgba(255,45,45,.08),0 0 26px rgba(255,45,45,.95)}}
+@media (max-width:760px){.live-stream-slot{padding:.55rem 1rem}.live-stream-indicator{min-height:54px;justify-content:center;border-radius:18px;padding:.72rem .95rem}.live-stream-copy{flex-direction:column;align-items:flex-start;gap:.18rem;text-align:left}.live-stream-copy small{font-size:.84rem}}
+@media (prefers-reduced-motion:reduce){.live-stream-dot{animation:none}}
