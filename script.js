@@ -7,8 +7,9 @@ if (navToggle && nav) {
     navToggle.setAttribute('aria-expanded', String(open));
     if (navToggleLabel) navToggleLabel.textContent = open ? 'Cerrar navegación' : 'Abrir navegación';
   };
-  const closeNav = () => {
+  const closeNav = ({ restoreFocus = false } = {}) => {
     setNavState(false);
+    if (restoreFocus) navToggle.focus({ preventScroll: true });
   };
 
   navToggle.addEventListener('click', () => {
@@ -26,7 +27,7 @@ if (navToggle && nav) {
   });
 
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') closeNav();
+    if (event.key === 'Escape') closeNav({ restoreFocus: true });
   });
 }
 const year = document.querySelector('[data-year]');
