@@ -79,7 +79,30 @@
 
   const scheduleNextPoll = () => {
     pollTimer = clearTimer(pollTimer);
+    if (document.hidden) return;
     pollTimer = window.setTimeout(checkLiveStream, pollIntervalMs);
+  };
+
+  const pausePolling = () => {
+    pollTimer = clearTimer(pollTimer);
+    startTimer = clearTimer(startTimer);
+  };
+
+  const resumePolling = () => {
+    if (isSundayAfterStartInAst()) {
+      checkLiveStream();
+    } else {
+      scheduleNextSunday();
+    }
+  };
+
+  const handleVisibilityChange = () => {
+    if (document.hidden) {
+      pausePolling();
+      return;
+    }
+
+    resumePolling();
   };
 
   const getLiveVideoId = async () => {
@@ -139,10 +162,8 @@
     checkLiveStream();
   }
 
+  document.addEventListener('visibilitychange', handleVisibilityChange);
   hideIndicator();
-  if (isSundayAfterStartInAst()) {
-    startSundayPolling();
-  } else {
-    scheduleNextSunday();
-  }
+  if (document.hidden) return;
+  resumePolling();
 })();
