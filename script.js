@@ -27,7 +27,7 @@ if (navToggle && nav) {
   });
 
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') closeNav({ restoreFocus: true });
+    if (event.key === 'Escape' && nav.classList.contains('open')) closeNav({ restoreFocus: true });
   });
 }
 const year = document.querySelector('[data-year]');
