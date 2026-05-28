@@ -68,8 +68,9 @@ if (latestYouTubeMount) {
     }
   };
 
-  const showVideo = (videoId) => {
+  const showVideo = (videoId, videoTitle = 'Último mensaje de ICDC Vega Baja Lakes en YouTube') => {
     iframe.src = `${embedBase}/${encodeURIComponent(videoId)}`;
+    iframe.title = videoTitle;
     iframe.hidden = false;
     iframe.removeAttribute('hidden');
     latestYouTubeMount.setAttribute('aria-busy', 'false');
@@ -95,9 +96,12 @@ if (latestYouTubeMount) {
       });
       const latestItem = uploadsData.items && uploadsData.items[0];
       const videoId = latestItem && ((latestItem.contentDetails && latestItem.contentDetails.videoId) || (latestItem.snippet && latestItem.snippet.resourceId && latestItem.snippet.resourceId.videoId));
+      const videoTitle = latestItem && latestItem.snippet && latestItem.snippet.title
+        ? `${latestItem.snippet.title} | ICDC Vega Baja Lakes en YouTube`
+        : undefined;
       if (!videoId) throw new Error('Latest video ID not found');
 
-      showVideo(videoId);
+      showVideo(videoId, videoTitle);
     } catch (error) {
       console.warn('Latest YouTube video unavailable:', error);
       const bakedVideoId = iframe && iframe.dataset && iframe.dataset.fallbackVideoId;
