@@ -8,6 +8,7 @@
   const channelLiveUrl = 'https://www.youtube.com/@ICDCVegaBajaLakes/live';
   const apiBase = 'https://www.googleapis.com/youtube/v3/search';
   const pollIntervalMs = 60000;
+  const requestTimeoutMs = 8000;
   const astOffsetMinutes = -4 * 60;
   const sunday = 0;
   const firstPollHour = 9;
@@ -114,15 +115,22 @@
     url.searchParams.set('maxResults', '1');
     url.searchParams.set('key', apiKey);
 
-    const response = await fetch(url.toString(), {
-      cache: 'no-store',
-      referrerPolicy: 'origin'
-    });
-    if (!response.ok) throw new Error('Live stream lookup failed');
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), requestTimeoutMs);
+    try {
+      const response = await fetch(url.toString(), {
+        cache: 'no-store',
+        referrerPolicy: 'origin',
+        signal: controller.signal
+      });
+      if (!response.ok) throw new Error('Live stream lookup failed');
 
-    const data = await response.json();
-    const liveItem = data.items && data.items.find((item) => item.id && item.id.videoId);
-    return liveItem && liveItem.id.videoId;
+      const data = await response.json();
+      const liveItem = data.items && data.items.find((item) => item.id && item.id.videoId);
+      return liveItem && liveItem.id.videoId;
+    } finally {
+      window.clearTimeout(timeout);
+    }
   };
 
   const checkLiveStream = async () => {

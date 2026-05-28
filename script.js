@@ -41,6 +41,7 @@ if (latestYouTubeMount) {
   const apiKey = ['AIzaSy','CkLfoznFw6','MBRLyRcMc8','GansxJ1vct7Os'].join('');
   const apiBase = 'https://www.googleapis.com/youtube/v3';
   const embedBase = 'https://www.youtube-nocookie.com/embed';
+  const requestTimeoutMs = 8000;
 
   const setStatus = (message, showLink = false) => {
     if (!status) return;
@@ -52,9 +53,15 @@ if (latestYouTubeMount) {
   const getJson = async (endpoint, params) => {
     const url = new URL(`${apiBase}/${endpoint}`);
     Object.entries({ ...params, key: apiKey }).forEach(([key, value]) => url.searchParams.set(key, value));
-    const response = await fetch(url.toString(), { cache: 'no-store' });
-    if (!response.ok) throw new Error(`YouTube API ${endpoint} failed: ${response.status}`);
-    return response.json();
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), requestTimeoutMs);
+    try {
+      const response = await fetch(url.toString(), { cache: 'no-store', signal: controller.signal });
+      if (!response.ok) throw new Error(`YouTube API ${endpoint} failed: ${response.status}`);
+      return response.json();
+    } finally {
+      window.clearTimeout(timeout);
+    }
   };
 
   const showVideo = (videoId) => {
