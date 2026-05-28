@@ -46,7 +46,7 @@ if (latestYouTubeMount) {
   const setStatus = (message, showLink = false) => {
     if (!status) return;
     status.innerHTML = showLink
-      ? `<div class="video-fallback"><p>${message}</p><a class="btn btn-primary" href="${channelUrl}" rel="noopener noreferrer">Visita nuestro canal</a></div>`
+      ? `<div class="video-fallback"><p>${message}</p><a class="btn btn-primary" href="${channelUrl}" target="_blank" rel="noopener noreferrer" aria-label="Visita nuestro canal de YouTube (abre en una pestaña nueva)">Visita nuestro canal</a></div>`
       : `<span class="video-spinner" aria-hidden="true"></span><p>${message}</p>`;
   };
 
