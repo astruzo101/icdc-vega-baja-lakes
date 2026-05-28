@@ -56,7 +56,11 @@ if (latestYouTubeMount) {
     const controller = new AbortController();
     const timeout = window.setTimeout(() => controller.abort(), requestTimeoutMs);
     try {
-      const response = await fetch(url.toString(), { cache: 'no-store', signal: controller.signal });
+      const response = await fetch(url.toString(), {
+        cache: 'no-store',
+        referrerPolicy: 'origin',
+        signal: controller.signal
+      });
       if (!response.ok) throw new Error(`YouTube API ${endpoint} failed: ${response.status}`);
       return response.json();
     } finally {
