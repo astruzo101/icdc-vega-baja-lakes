@@ -2,10 +2,12 @@ const navToggle = document.querySelector('[data-nav-toggle]');
 const nav = document.querySelector('[data-nav]');
 if (navToggle && nav) {
   const navToggleLabel = navToggle.querySelector('.sr-only');
+  const navToggleText = navToggle.querySelector('span[aria-hidden="true"]');
   const setNavState = (open) => {
     nav.classList.toggle('open', open);
     navToggle.setAttribute('aria-expanded', String(open));
     if (navToggleLabel) navToggleLabel.textContent = open ? 'Cerrar navegación' : 'Abrir navegación';
+    if (navToggleText) navToggleText.textContent = open ? 'Cerrar' : 'Menú';
   };
   const closeNav = ({ restoreFocus = false } = {}) => {
     setNavState(false);
