@@ -1,0 +1,20 @@
+{
+  "last_attempt_at": "2026-05-29T18:53:02-0400",
+  "last_successful_fetch_at": "2026-05-29T18:53:02-0400",
+  "last_sync_at": "2026-05-29T18:53:02-0400",
+  "next_sync_due_at": "2026-05-29T21:53:02-0400",
+  "source_url": "https://www.facebook.com/DiscipulosVBL/",
+  "fetch_mode": "public unauthenticated curl",
+  "last_seen_signatures": [
+    "dea0aafaa99243e49b7539cebb8e10319c0c3873ec6631d003893fbd254c0e60"
+  ],
+  "last_seen_urls": [
+    "https://www.facebook.com/DiscipulosVBL",
+    "https://scontent.fsig5-1.fna.fbcdn.net/v/t39.30808-1/476134671_1015916443899142_8481479507891290674_n.jpg"
+  ],
+  "last_seen_timestamps": [],
+  "posts_detected": 0,
+  "media_files_saved": 0,
+  "events_updated": 0,
+  "error_summary": "Public fetch returned only page-level metadata; no concrete post timestamps, post URLs, schedule graphics, event details, sermon links, or gallery-ready media were available without authentication."
+}
