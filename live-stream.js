@@ -15,6 +15,7 @@
   const firstPollMinute = 45;
   const minuteMs = 60000;
   const dayMs = 24 * 60 * minuteMs;
+  const maxTimeoutMs = 2147483647;
 
   let pollTimer = null;
   let startTimer = null;
@@ -70,12 +71,24 @@
     root.classList.add('is-live');
   };
 
+  const scheduleTimeout = (callback, delayMs) => {
+    const safeDelay = Math.min(Math.max(delayMs, 0), maxTimeoutMs);
+    return window.setTimeout(() => {
+      const remainingDelay = delayMs - safeDelay;
+      if (remainingDelay > 0) {
+        startTimer = scheduleTimeout(callback, remainingDelay);
+        return;
+      }
+      callback();
+    }, safeDelay);
+  };
+
   const scheduleNextSunday = () => {
     pollTimer = clearTimer(pollTimer);
     startTimer = clearTimer(startTimer);
     liveWasDetected = false;
     hideIndicator();
-    startTimer = window.setTimeout(startSundayPolling, msUntilNextSundayStart());
+    startTimer = scheduleTimeout(startSundayPolling, msUntilNextSundayStart());
   };
 
   const scheduleNextPoll = () => {
