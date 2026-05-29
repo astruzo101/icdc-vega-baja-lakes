@@ -63,6 +63,9 @@
 }
 
 /* Accessibility refinement: make keyboard focus unmistakable on interactive controls. */
+.skip-link:focus,
+.brand:focus-visible,
+.nav-toggle:focus-visible,
 .btn:focus-visible,
 .text-link:focus-visible,
 .contact-row:focus-visible,
