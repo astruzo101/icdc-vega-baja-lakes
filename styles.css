@@ -106,8 +106,8 @@
   .expect-list{gap:.85rem}.expect-list div,.contact-row{padding:1rem;border-radius:18px}
   .footer{padding:3rem 1rem 1.25rem}.footer-cta{flex-direction:column;align-items:stretch;gap:1rem;padding:1rem}.footer-cta strong{font-size:1.05rem;line-height:1.45}.footer-grid{gap:1.35rem}.footer-logo{width:76px;height:76px}.footer a{min-height:44px;display:inline-flex;align-items:center}.footer-bottom{display:flex;flex-direction:column;gap:.75rem}
 }
-@media (max-width:760px){
-  .text-link,.expect-list a{display:inline-flex;align-items:center;min-height:44px;min-width:44px}
+@media (max-width:1024px){
+  .text-link,.expect-list a,.footer a{display:inline-flex;align-items:center;min-height:44px;min-width:44px}
 }
 
 /* Image ratio integrity sweep: prevent stretching across all breakpoints. */
