@@ -1,12 +1,12 @@
 {
-  "last_attempt_at": "2026-05-30T02:39:00-0400",
+  "last_attempt_at": "2026-05-30T05:42:47-0400",
   "last_successful_fetch_at": "2026-05-29T20:31:02-0400",
-  "last_sync_at": "2026-05-30T02:39:00-0400",
-  "next_sync_due_at": "2026-05-30T05:39:00-0400",
+  "last_sync_at": "2026-05-30T05:42:47-0400",
+  "next_sync_due_at": "2026-05-30T08:42:47-0400",
   "source_url": "https://www.facebook.com/DiscipulosVBL/",
   "fetch_mode": "public unauthenticated curl",
   "last_seen_signatures": [
-    "109252e00d7725cc9cfd62d538d1a7357aee21530211a899d2e0696188ab1815"
+    "be7acbf5fb5d43f4a2ca5c08c44850d958d562e9f421ebd0ff6d3f9984811a59"
   ],
   "last_seen_urls": [
     "https://www.facebook.com/DiscipulosVBL/"
@@ -16,5 +16,5 @@
   "media_files_saved": 0,
   "events_updated": 0,
   "page_title": "Error",
-  "error_summary": "Public unauthenticated fetch reached the Facebook page shell but exposed no detectable post timestamps, post URLs, schedule graphics, event details, sermon links, or gallery-ready media."
+  "error_summary": "Public unauthenticated fetch returned HTTP 400 / Facebook error shell and exposed no detectable post timestamps, post URLs, schedule graphics, event details, sermon links, or gallery-ready media."
 }
