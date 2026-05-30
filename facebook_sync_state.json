@@ -1,12 +1,12 @@
 {
-  "last_attempt_at": "2026-05-30T11:50:55-0400",
+  "last_attempt_at": "2026-05-30T14:54:12-0400",
   "last_successful_fetch_at": "2026-05-30T08:46:08-0400",
-  "last_sync_at": "2026-05-30T11:50:55-0400",
-  "next_sync_due_at": "2026-05-30T14:50:55-0400",
+  "last_sync_at": "2026-05-30T14:54:12-0400",
+  "next_sync_due_at": "2026-05-30T17:54:12-0400",
   "source_url": "https://www.facebook.com/DiscipulosVBL/",
   "fetch_mode": "public unauthenticated curl",
   "last_seen_signatures": [
-    "ccb0f22994975229c2078ec4da5baf1e981327d247f844ddb0a3c49e3459e15f"
+    "135b5647fb1f498f5be6696368623052f1ab6fdc576787cdcee8c91ead12a329"
   ],
   "last_seen_urls": [
     "https://www.facebook.com/DiscipulosVBL/"
@@ -16,5 +16,5 @@
   "media_files_saved": 0,
   "events_updated": 0,
   "page_title": "Error",
-  "error_summary": "Public unauthenticated fetch returned HTTP 400 Bad Request from Facebook and exposed no detectable post timestamps, post URLs, schedule graphics, event details, sermon links, or gallery-ready media. Error page signature: 3dfd81e0fd92173d5a69cd9a245ac1a21ce1d28906507e36dc2f07f8624d572b."
+  "error_summary": "Public unauthenticated fetch returned HTTP 400 Bad Request from Facebook and exposed no detectable post timestamps, post URLs, schedule graphics, event details, sermon links, or gallery-ready media. Error page signature: 135b5647fb1f498f5be6696368623052f1ab6fdc576787cdcee8c91ead12a329."
 }
