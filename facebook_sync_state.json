@@ -1,12 +1,12 @@
 {
-  "last_attempt_at": "2026-05-29T18:53:02-0400",
-  "last_successful_fetch_at": "2026-05-29T18:53:02-0400",
-  "last_sync_at": "2026-05-29T18:53:02-0400",
-  "next_sync_due_at": "2026-05-29T21:53:02-0400",
+  "last_attempt_at": "2026-05-29T20:31:02-0400",
+  "last_successful_fetch_at": "2026-05-29T20:31:02-0400",
+  "last_sync_at": "2026-05-29T20:31:02-0400",
+  "next_sync_due_at": "2026-05-29T23:31:02-0400",
   "source_url": "https://www.facebook.com/DiscipulosVBL/",
   "fetch_mode": "public unauthenticated curl",
   "last_seen_signatures": [
-    "dea0aafaa99243e49b7539cebb8e10319c0c3873ec6631d003893fbd254c0e60"
+    "4e078b14ac11ee747c91162830d58aaf8adf32f9de6cacdb4fad25d5a07317a5"
   ],
   "last_seen_urls": [
     "https://www.facebook.com/DiscipulosVBL",
@@ -16,5 +16,5 @@
   "posts_detected": 0,
   "media_files_saved": 0,
   "events_updated": 0,
-  "error_summary": "Public fetch returned only page-level metadata; no concrete post timestamps, post URLs, schedule graphics, event details, sermon links, or gallery-ready media were available without authentication."
+  "error_summary": "Public fetch succeeded but returned only page-level metadata/login-gated markup; no concrete post timestamps, post URLs, schedule graphics, event details, sermon links, or gallery-ready media were available without authentication."
 }
