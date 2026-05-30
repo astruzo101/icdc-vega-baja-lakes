@@ -1,14 +1,21 @@
 const navToggle = document.querySelector('[data-nav-toggle]');
 const nav = document.querySelector('[data-nav]');
 if (navToggle && nav) {
+  const navToggleLabel = navToggle.querySelector('.sr-only');
+  const setNavState = (open) => {
+    navToggle.setAttribute('aria-expanded', String(open));
+    if (navToggleLabel) {
+      navToggleLabel.textContent = open ? 'Cerrar navegación' : 'Abrir navegación';
+    }
+  };
   const closeNav = () => {
     nav.classList.remove('open');
-    navToggle.setAttribute('aria-expanded', 'false');
+    setNavState(false);
   };
 
   navToggle.addEventListener('click', () => {
     const open = nav.classList.toggle('open');
-    navToggle.setAttribute('aria-expanded', String(open));
+    setNavState(open);
   });
 
   nav.addEventListener('click', (event) => {
