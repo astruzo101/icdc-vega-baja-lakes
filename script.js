@@ -87,7 +87,6 @@ if (latestYouTubeMount) {
 
       showVideo(videoId);
     } catch (error) {
-      console.warn('El último video de YouTube no está disponible:', error);
       const bakedVideoId = iframe && iframe.dataset && iframe.dataset.fallbackVideoId;
       if (bakedVideoId) {
         showVideo(bakedVideoId);
