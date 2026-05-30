@@ -1,8 +1,8 @@
 {
-  "last_attempt_at": "2026-05-30T08:46:08-0400",
+  "last_attempt_at": "2026-05-30T11:50:55-0400",
   "last_successful_fetch_at": "2026-05-30T08:46:08-0400",
-  "last_sync_at": "2026-05-30T08:46:08-0400",
-  "next_sync_due_at": "2026-05-30T11:46:08-0400",
+  "last_sync_at": "2026-05-30T11:50:55-0400",
+  "next_sync_due_at": "2026-05-30T14:50:55-0400",
   "source_url": "https://www.facebook.com/DiscipulosVBL/",
   "fetch_mode": "public unauthenticated curl",
   "last_seen_signatures": [
@@ -15,6 +15,6 @@
   "posts_detected": 0,
   "media_files_saved": 0,
   "events_updated": 0,
-  "page_title": "ICDC en Vega Baja Lakes | Vega Baja",
-  "error_summary": "Public unauthenticated fetch returned the Facebook page shell but exposed no detectable post timestamps, post URLs, schedule graphics, event details, sermon links, or gallery-ready media."
+  "page_title": "Error",
+  "error_summary": "Public unauthenticated fetch returned HTTP 400 Bad Request from Facebook and exposed no detectable post timestamps, post URLs, schedule graphics, event details, sermon links, or gallery-ready media. Error page signature: 3dfd81e0fd92173d5a69cd9a245ac1a21ce1d28906507e36dc2f07f8624d572b."
 }

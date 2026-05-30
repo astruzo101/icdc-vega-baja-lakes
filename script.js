@@ -44,6 +44,7 @@ if (latestYouTubeMount) {
   const apiBase = 'https://www.googleapis.com/youtube/v3';
 
   const setStatus = (message, showLink = false) => {
+    latestYouTubeMount.setAttribute('aria-busy', showLink ? 'false' : 'true');
     if (!status) return;
     status.innerHTML = showLink
       ? `<div class="video-fallback"><p>${message}</p><a class="btn btn-primary" href="${channelUrl}" rel="noopener noreferrer">Visita nuestro canal</a></div>`
@@ -59,6 +60,7 @@ if (latestYouTubeMount) {
   };
 
   const showVideo = (videoId) => {
+    latestYouTubeMount.setAttribute('aria-busy', 'false');
     iframe.src = `https://www.youtube.com/embed/${encodeURIComponent(videoId)}`;
     iframe.hidden = false;
     iframe.removeAttribute('hidden');
