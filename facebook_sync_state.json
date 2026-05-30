@@ -1,20 +1,20 @@
 {
-  "last_attempt_at": "2026-05-29T23:33:42-0400",
+  "last_attempt_at": "2026-05-30T02:39:00-0400",
   "last_successful_fetch_at": "2026-05-29T20:31:02-0400",
-  "last_sync_at": "2026-05-29T23:33:42-0400",
-  "next_sync_due_at": "2026-05-30T02:33:42-0400",
+  "last_sync_at": "2026-05-30T02:39:00-0400",
+  "next_sync_due_at": "2026-05-30T05:39:00-0400",
   "source_url": "https://www.facebook.com/DiscipulosVBL/",
   "fetch_mode": "public unauthenticated curl",
   "last_seen_signatures": [
-    "4e078b14ac11ee747c91162830d58aaf8adf32f9de6cacdb4fad25d5a07317a5"
+    "109252e00d7725cc9cfd62d538d1a7357aee21530211a899d2e0696188ab1815"
   ],
   "last_seen_urls": [
-    "https://www.facebook.com/DiscipulosVBL",
-    "https://scontent.fsig5-1.fna.fbcdn.net/v/t39.30808-1/476134671_1015916443899142_8481479507891290674_n.jpg"
+    "https://www.facebook.com/DiscipulosVBL/"
   ],
   "last_seen_timestamps": [],
   "posts_detected": 0,
   "media_files_saved": 0,
   "events_updated": 0,
-  "error_summary": "Public unauthenticated fetch returned a small Facebook Error page with no detectable post timestamps, post URLs, fbcdn media URLs, schedule graphics, event details, sermon links, or gallery-ready media."
+  "page_title": "Error",
+  "error_summary": "Public unauthenticated fetch reached the Facebook page shell but exposed no detectable post timestamps, post URLs, schedule graphics, event details, sermon links, or gallery-ready media."
 }
