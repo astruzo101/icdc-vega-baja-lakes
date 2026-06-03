@@ -64,6 +64,7 @@
 
 /* Accessibility refinement: make keyboard focus unmistakable on interactive controls. */
 .btn:focus-visible,
+.nav-toggle:focus-visible,
 .text-link:focus-visible,
 .contact-row:focus-visible,
 .ministry-social:focus-visible,
