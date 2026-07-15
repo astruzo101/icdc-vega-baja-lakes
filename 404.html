@@ -18,9 +18,7 @@
   <meta name="theme-color" content="#182634">
   <link rel="icon" type="image/png" href="/assets/img/logo.png">
   <link rel="apple-touch-icon" href="/assets/img/logo.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..900;1,9..40,400..900&display=swap" rel="stylesheet">
+  <link rel="preload" href="assets/fonts/dm-sans-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/styles.css">
   <script type="application/ld+json">{
   "@context": "https://schema.org",
@@ -33,8 +31,17 @@
     "@type": "PostalAddress",
     "addressLocality": "Vega Baja Lakes",
     "addressRegion": "PR",
+    "postalCode": "00674",
     "addressCountry": "US"
   },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 18.4422951,
+    "longitude": -66.4320582
+  },
+  "hasMap": "https://maps.app.goo.gl/YiJioVxp742Bdgsa6",
+  "image": "https://icdcvegabajalakes.com/assets/img/worship-hero.jpg",
+  "logo": "https://icdcvegabajalakes.com/assets/img/logo.png",
   "sameAs": [
     "https://www.facebook.com/DiscipulosVBL/",
     "https://www.youtube.com/@ICDCVegaBajaLakes"
@@ -66,7 +73,7 @@
 <header class="site-header" data-header>
   <a class="brand" href="/" aria-label="ICDC Vega Baja Lakes - Inicio">
     <img decoding="async" src="/assets/img/logo.png" width="56" height="56" alt="Logo de ICDC Vega Baja Lakes">
-    <span><strong>ICDC</strong><small>Vega Baja Lakes</small></span>
+    <span aria-hidden="true"><strong>ICDC</strong><small>Vega Baja Lakes</small></span>
   </a>
   <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
     <span class="sr-only">Abrir navegación</span><span aria-hidden="true">Menú</span>

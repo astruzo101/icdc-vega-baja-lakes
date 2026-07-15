@@ -4,3 +4,7 @@
 !.dev.vars.example
 .env*
 !.env.example
+
+# Python caches
+__pycache__/
+*.py[cod]

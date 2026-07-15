@@ -38,81 +38,18 @@ const latestYouTubeMount = document.querySelector('[data-youtube-latest]');
 if (latestYouTubeMount) {
   const status = latestYouTubeMount.querySelector('[data-youtube-status]');
   const iframe = latestYouTubeMount.querySelector('[data-youtube-iframe]');
-  const channelUrl = 'https://www.youtube.com/@ICDCVegaBajaLakes';
-  const channelHandle = 'ICDCVegaBajaLakes';
-  const apiKey = ['AIzaSy','CkLfoznFw6','MBRLyRcMc8','GansxJ1vct7Os'].join('');
-  const apiBase = 'https://www.googleapis.com/youtube/v3';
-  const requestTimeoutMs = 8000;
+  const videoId = iframe?.dataset?.fallbackVideoId;
 
-  const setStatus = (message, showLink = false) => {
-    latestYouTubeMount.setAttribute('aria-busy', showLink ? 'false' : 'true');
-    if (!status) return;
-    status.innerHTML = showLink
-      ? `<div class="video-fallback"><p>${message}</p><a class="btn btn-primary" href="${channelUrl}" rel="noopener noreferrer">Visita nuestro canal</a></div>`
-      : `<span class="video-spinner" aria-hidden="true"></span><p>${message}</p>`;
-  };
-
-  const getJson = async (endpoint, params) => {
-    const url = new URL(`${apiBase}/${endpoint}`);
-    Object.entries({ ...params, key: apiKey }).forEach(([key, value]) => url.searchParams.set(key, value));
-
-    const controller = new AbortController();
-    const timeout = window.setTimeout(() => controller.abort(), requestTimeoutMs);
-    try {
-      const response = await fetch(url.toString(), {
-        cache: 'no-store',
-        referrerPolicy: 'origin',
-        signal: controller.signal
-      });
-      if (!response.ok) throw new Error(`No se pudo consultar YouTube (${endpoint}): ${response.status}`);
-      return response.json();
-    } finally {
-      window.clearTimeout(timeout);
-    }
-  };
-
-  const showVideo = (videoId) => {
-    latestYouTubeMount.setAttribute('aria-busy', 'false');
-    iframe.src = `https://www.youtube.com/embed/${encodeURIComponent(videoId)}`;
+  if (iframe && videoId && /^[A-Za-z0-9_-]{11}$/.test(videoId)) {
+    iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}`;
     iframe.hidden = false;
     iframe.removeAttribute('hidden');
-    if (status) status.remove();
-  };
-
-  const loadLatestYouTubeVideo = async () => {
-    try {
-      setStatus('Cargando último mensaje…');
-      const channelData = await getJson('channels', {
-        part: 'id,contentDetails',
-        forHandle: channelHandle
-      });
-      const channel = channelData.items && channelData.items[0];
-      const uploadsPlaylist = channel && channel.contentDetails && channel.contentDetails.relatedPlaylists && channel.contentDetails.relatedPlaylists.uploads;
-      if (!uploadsPlaylist) throw new Error('No se encontró la lista de videos del canal');
-
-      const uploadsData = await getJson('playlistItems', {
-        part: 'contentDetails,snippet',
-        playlistId: uploadsPlaylist,
-        maxResults: '1'
-      });
-      const latestItem = uploadsData.items && uploadsData.items[0];
-      const videoId = latestItem && ((latestItem.contentDetails && latestItem.contentDetails.videoId) || (latestItem.snippet && latestItem.snippet.resourceId && latestItem.snippet.resourceId.videoId));
-      if (!videoId) throw new Error('No se encontró el video más reciente');
-
-      showVideo(videoId);
-    } catch (error) {
-      const bakedVideoId = iframe && iframe.dataset && iframe.dataset.fallbackVideoId;
-      if (bakedVideoId) {
-        showVideo(bakedVideoId);
-        return;
-      }
-      if (iframe) {
-        iframe.hidden = true;
-        iframe.removeAttribute('src');
-      }
-      setStatus('Último mensaje no disponible. Visita nuestro canal.', true);
+    latestYouTubeMount.setAttribute('aria-busy', 'false');
+    status?.remove();
+  } else {
+    latestYouTubeMount.setAttribute('aria-busy', 'false');
+    if (status) {
+      status.innerHTML = '<div class="video-fallback"><p>Último mensaje no disponible.</p><a class="btn btn-primary" href="https://www.youtube.com/@ICDCVegaBajaLakes" rel="noopener noreferrer">Visita nuestro canal</a></div>';
     }
-  };
-
-  loadLatestYouTubeVideo();
+  }
 }
