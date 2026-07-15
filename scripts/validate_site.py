@@ -46,6 +46,12 @@ class PageParser(HTMLParser):
         for attribute in ("href", "src"):
             if values.get(attribute):
                 self.references.append(values[attribute] or "")
+        srcset = values.get("srcset")
+        if srcset:
+            for candidate in srcset.split(","):
+                parts = candidate.strip().split()
+                if parts:
+                    self.references.append(parts[0])
 
     def handle_data(self, data: str) -> None:
         if self.in_title:

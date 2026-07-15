@@ -60,7 +60,7 @@ def main() -> None:
     save_variants("worship-hero.jpg", (480, 768, 1280, 1440, 1920), quality=65)
     save_variants("worship-gathering.jpg", (480, 960), quality=64)
     save_variants("youth-group.jpg", (480, 960), quality=64)
-    save_variants("youth-worship.jpg", (480, 768, 1280), quality=67)
+    save_variants("youth-worship.jpg", (480, 768, 1176), quality=67)
     save_logo()
 
 
